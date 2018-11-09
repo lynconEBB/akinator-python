@@ -1,0 +1,52 @@
+Nome,Sexo,CorCabelo,ComprCabelo,TipoCabelo,Idade,CorRoupa,Oculos,CorPele,CorSapato
+Homer Simpson,Masculino,Preto,Curto,Fios,Adulto,Branco,Nao,Amarelo,Preto
+Ned Flanders,Masculino,CastanhoEscuro,Curto,Liso,Adulto,Verde,Sim,Amarelo,Preto
+Moe Szyslak,Masculino,Cinza,Curto,Crespo,Velho,Azul,Nao,Amarelo,Preto
+Lisa Simpson,Feminino,Amarelo,Curto,Triangulos,Criança,Laranja,Nao,Amarelo,Laranja
+Bart Simpson,Masculino,Amarelo,Curto,Triangulos,Criança,Vermelho,Nao,Amarelo,Azul
+Marge Simpson,Feminino,Azul,Longo,Crespo,Adulto,Verde,Nao,Amarelo,Laranja
+Krusty The Clown,Masculino,Verde,Longo,Crespo,Adulto,Azul,Nao,Amarelo,Laranja
+Principal Skinner,Masculino,Cinza,Curto,Curvo,Adulto,Ciano,Nao,Amarelo,Cinza
+Charles Montgomery Burns,Masculino,Cinza,Curto,Liso,Velho,Verde,Nao,Amarelo,Preto
+Milhouse Van Houten,Masculino,Azul,Curto,Liso,Criança,Rosa,Sim,Amarelo,Vermelho
+Chief Wiggum,Masculino,Azul,Curto,Crespo,Adulto,Azul,Nao,Amarelo,Preto
+Abraham Grampa Simpson,Masculino,Careca,Careca,Careca,Velho,Marrom,Nao,Amarelo,Marrom
+Sideshow Bob,Masculino,Vermelho,Longo,Crespo,Adulto,Verde,Nao,Amarelo,Marrom
+Apu Nahasapeemapetilon,Masculino,Preto,Curto,Liso,Adulto,Verde,Nao,Marrom,Preto
+Kent Brockman,Masculino,Branco,Curto,Liso,Adulto,Marrom,Nao,Amarelo,Preto
+Comic Book Guy,Masculino,CastanhoClaro,Medio,Liso,Adulto,Azul,Nao,Amarelo,Azul
+Edna Krabappel,Feminino,CastanhoClaro,Medio,Liso,Adulto,Verde,Nao,Amarelo,Verde
+Nelson Muntz,Masculino,CastanhoClaro,Curto,Liso,Criança,Laranja,Nao,Amarelo,Azul
+Lenny Leonard,Masculino,CastanhoEscuro,Curto,Liso,Adulto,Verde,Nao,Amarelo,Preto
+Mayor Quimby,Masculino,CastanhoEscuro,Curto,Liso,Adulto,Azul,Nao,Amarelo,Preto
+Waylon Smithers,Masculino,Cinza,Curto,Liso,Adulto,Branco,Nao,Amarelo,Preto
+Maggie Simpson,Feminino,Amarelo,Curto,Triangulos,Bebê,Azul,Nao,Amarelo,Sem Sapato
+Groundskeeper Willie,Masculino,Vermelho,Curto,Liso,Adulto,Azul,Nao,Amarelo,Preto
+Barney Gumble,Masculino,CastanhoClaro,Curto,Liso,Adulto,Laranja,Nao,Amarelo,Azul
+Selma Bouvier,Feminino,Cinza,Longo,Crespo,Adulto,Azul,Nao,Amarelo,Azul
+Carl Carlson,Masculino,Preto,Curto,Crespo,Adulto,Rosa,Nao,Marrom,Preto
+Ralph Wiggum,Masculino,Preto,Curto,Fios,Criança,Azul,Nao,Amarelo,Cinza
+Patty Bouvier,Feminino,Cinza,Longo,Crespo,Adulto,Rosa,Nao,Amarelo,Rosa
+Martin Prince,Masculino,CastanhoClaro,Curto,Liso,Criança,Branco,Nao,Amarelo,Preto
+Professor John Frink,Masculino,CastanhoClaro,Curto,Liso,Adulto,Branco,Sim,Amarelo,Preto
+Snake Jailbird,Masculino,CastanhoEscuro,Curto,Liso,Adulto,Cinza,Nao,Amarelo,Preto
+Cletus Spuckler,Masculino,CastanhoEscuro,Curto,Liso,Adulto,Branco,Nao,Amarelo,Marrom
+Rainier Wolfcastle,Masculino,Branco,Curto,Liso,Adulto,Branco,Nao,Amarelo,Preto
+Agnes Skinner,Feminino,Cinza,Medio,Crespo,Velho,Roxo,Nao,Amarelo,Roxo
+Sideshow Mel,Masculino,Verde,Medio,Crespo,Adulto,Sem Roupa,Nao,Amarelo,Marrom
+Otto Mann,Masculino,Preto,Longo,Liso,Adulto,Rosa,Nao,Amarelo,Rosa
+Fat Tony,Masculino,Cinza,Curto,Liso,Adulto,Verde,Nao,Amarelo,Preto
+Gil,Masculino,Cinza,Curto,Liso,Adulto,Branco,Nao,Amarelo,Preto
+Miss Hoover,Feminino,CastanhoEscuro,Medio,Liso,Adulto,Branco,Sim,Amarelo,Roxo
+Disco Stu,Masculino,CastanhoClaro,Medio,Crespo,Adulto,Azul,Nao,Amarelo,Preto
+Troy Mcclure,Masculino,CastanhoClaro,Curto,Liso,Adulto,Rosa,Nao,Amarelo,Marrom
+Lionel Hutz,Masculino,CastanhoEscuro,Curto,Liso,Adulto,Azul,Nao,Amarelo,Preto
+Jimbo Jones,Masculino,CastanhoEscuro,Medio,Fios,Adolescente,Preto,Nao,Amarelo,Preto
+Bumblebee Man,Masculino,Careca,Careca,Careca,Adulto,Amarelo,Nao,Marrom,Preto
+Bumblebee Man,Masculino,Careca,Careca,Careca,Adulto,Preto,Nao,Marrom,Preto
+Hans Moleman,Masculino,Careca,Careca,Careca,Velho,Branco,Sim,Amarelo,Cinza
+Helen Lovejoy,Feminino,Cinza,Longo,Liso,Adulto,Rosa,Nao,Amarelo,Preto
+Jasper Beardly,Masculino,Careca,Careca,Careca,Velho,Verde,Nao,Amarelo,Cinza
+Dr Hibbert,Masculino,Preto,Curto,Crespo,Adulto,Branco,Nao,Marrom,Preto
+Kearney Zzyzwicz,Masculino,Careca,Careca,Careca,Adolescente,Branco,Nao,Amarelo,Preto
+Luanne Van Houten,Feminino,Azul,Curto,Liso,Adulto,Branco,Sim,Amarelo,Preto
