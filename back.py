@@ -31,6 +31,8 @@ class Funcoes:
         self.encoder_corPele = LabelEncoder()
         self.encoder_corSapato = LabelEncoder()
 
+        self.arvore = DecisionTreeClassifier(criterion="gini")
+
         self.encode_dados()
 
     def acrescenta_dados(self,advinha):#Funcao para Acrescentar dados que nao existiam no Label Encoder
@@ -91,7 +93,10 @@ class Funcoes:
         self.encoder_corPele.fit(self.cores_pele)
         self.data_set_num["CorPele"] = self.encoder_corPele.fit_transform(self.data_set_num["CorPele"])
         self.encoder_corSapato.fit(self.cores_sapatos)
-        self.data_set_num["CorSapato"] = self.encoder_corSapato.fit_transform(self.data_set_num["CorSapato"]) 
+        self.data_set_num["CorSapato"] = self.encoder_corSapato.fit_transform(self.data_set_num["CorSapato"])
+
+        self.arvore.fit(self.data_set_num[["Sexo", "CorCabelo", "ComprCabelo", "TipoCabelo", "Idade", "CorRoupa", "Oculos", "CorPele","CorSapato"]], self.data_set_num["Nome"])
+
 
     def valida_personagem(self,advinha):                #Funcao para verificar se personagem pesquisado existe no dataFrame
         achou = False
@@ -115,12 +120,11 @@ class Funcoes:
         return achou
 
     def gerar_predict(self,chute):
-        self.arvore = DecisionTreeClassifier(criterion="gini")
+
         self.arvore.fit(self.data_set_num[["Sexo","CorCabelo","ComprCabelo","TipoCabelo","Idade","CorRoupa","Oculos","CorPele","CorSapato"]], self.data_set_num["Nome"])
 
         previsao = self.arvore.predict([chute])
 
-        #export_graphviz(arvore, out_file='tree.dot', class_names=self.data_set_num["Nome"],feature_names=['Sexo', 'CorCabelo', 'ComprCabelo', 'TipoCabelo', 'Idade', 'CorRoupa', 'Oculos','CorPele', 'CorSapato'], impurity=False, filled=True, rounded=True)
         return previsao
         
     def codificar_resposta(self,chute):             # Funcao para transformar chute Categorico em Numerico
