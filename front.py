@@ -18,15 +18,43 @@ class JanelaPrincipal(QMainWindow):
 
         p = self.palette()
         p.setColor(self.backgroundRole(),Qt.yellow)
+
+        p2 = self.palette()
+        p2.setColor(self.backgroundRole(), Qt.green)
+
         self.setPalette(p)
 
         self.main_layout = QFormLayout()
         self.main_layout.setSpacing(20)
 
-        self.titulo = QLabel("Preencha os Campos com Informações de um personagem dos Simpsons", self)
+        self.titulo = QLabel("Preencha os Campos com Informações\nde um personagem dos Simpsons", self)
+
         self.titulo.setFont(self.fonte_titulo)
         self.titulo.setAlignment(Qt.AlignCenter)
+        self.titulo.setAutoFillBackground(True)
+        self.titulo.setPalette(p2)
 
+        self.init_ui()
+
+        self.win = QWidget()
+        self.win.setLayout(self.main_layout)
+        self.setCentralWidget(self.win)
+
+        tool_bar = QToolBar(self)
+        self.addToolBar(Qt.LeftToolBarArea, tool_bar)
+        tool_bar.setIconSize(QSize(40, 40))
+
+        arvore_action = QAction(QIcon("Imagens/iconeArvore.png"), "Arvore de Decisão", self)
+        arvore_action.setStatusTip("Gera e visualiza arvore de decisão")
+        tool_bar.addAction(arvore_action)
+        arvore_action.triggered.connect(self.gerar_arvore)
+
+        novo_action = QAction(QIcon("Imagens/novo.png"), "Novo Personagem", self)
+        novo_action.setStatusTip("Inserir novo personagem na base de dados")
+        tool_bar.addAction(novo_action)
+        novo_action.triggered.connect(self.inserir_pers)
+
+    def init_ui(self):
         self.combo_sexo = QComboBox()
         self.combo_sexo.addItems(self.func.sexos)
         self.combo_corCabelo = QComboBox()
@@ -45,8 +73,6 @@ class JanelaPrincipal(QMainWindow):
         self.combo_corPele.addItems(self.func.cores_pele)
         self.combo_corSapato = QComboBox()
         self.combo_corSapato.addItems(self.func.cores_sapatos)
-        self.botaoArvore =QPushButton("Vizualizar Arvore de Decisoes",self)
-        self.botaoArvore.clicked.connect(self.gerar_arvore)
         self.botao = QPushButton("Adivinhar!!",self)
         self.botao.clicked.connect(self.advinhar)
 
@@ -61,25 +87,26 @@ class JanelaPrincipal(QMainWindow):
         self.main_layout.addRow(QLabel("Cor da Pele: "), self.combo_corPele)
         self.main_layout.addRow(QLabel("Cor do Sapato: "), self.combo_corSapato)
         self.main_layout.addRow(self.botao)
-        self.main_layout.addRow(self.botaoArvore)
 
-        self.win = QWidget()
-        self.win.setLayout(self.main_layout)
-        self.setCentralWidget(self.win)
-
-        tool_bar = QToolBar(self)
-        self.addToolBar(Qt.LeftToolBarArea, tool_bar)
-        tool_bar.setIconSize(QSize(40, 40))
-
-        arvore_action = QAction(QIcon("Imagens/iconeArvore.png"), "Arvore de Decisão", self)
-        arvore_action.setStatusTip("Gera e visualiza arvore de decisão")
-        tool_bar.addAction(arvore_action)
-        arvore_action.triggered.connect(self.gerar_arvore)
-
-        novo_action = QAction(QIcon("Imagens/novo.png"), "Novo Personagem", self)
-        novo_action.setStatusTip("Inserir novo personagem na base de dados")
-        tool_bar.addAction(novo_action)
-        novo_action.triggered.connect(self.gerar_arvore)
+    def update_combo(self):
+        self.combo_sexo.clear()
+        self.combo_corCabelo.clear()
+        self.combo_comprCabelo.clear()
+        self.combo_tipoCabelo.clear()
+        self.combo_idade.clear()
+        self.combo_corRoupa.clear()
+        self.combo_oculos.clear()
+        self.combo_corPele.clear()
+        self.combo_corSapato.clear()
+        self.combo_sexo.addItems(self.func.sexos)
+        self.combo_corCabelo.addItems(self.func.cores_cabelos)
+        self.combo_comprCabelo.addItems(self.func.compr_cabelos)
+        self.combo_tipoCabelo.addItems(self.func.tipos_cabelos)
+        self.combo_idade.addItems(self.func.idades)
+        self.combo_corRoupa.addItems(self.func.cores_roupas)
+        self.combo_oculos.addItems(self.func.oculos)
+        self.combo_corPele.addItems(self.func.cores_pele)
+        self.combo_corSapato.addItems(self.func.cores_sapatos)
 
     def advinhar(self):
         chute = [self.combo_sexo.currentText(),self.combo_corCabelo.currentText(),self.combo_comprCabelo.currentText(),self.combo_tipoCabelo.currentText(),self.combo_idade.currentText(),self.combo_corRoupa.currentText(),
@@ -119,20 +146,29 @@ class JanelaPrincipal(QMainWindow):
         imageViewerFromCommandLine = {'linux': 'eog',
                                       'win32': 'explorer',
                                       'darwin': 'open'}[sys.platform]
-        subprocess.run([imageViewerFromCommandLine, '/home/lyncon/Desktop/Trab top/tree2.png'])
+        subprocess.run([imageViewerFromCommandLine, '/home/lyncon/AkinatorPython/tree2.png'])
+
+    def inserir_pers(self):
+        add_janela = JanelaNovo()
+        if add_janela.exec_():
+            per = [add_janela.input_sexo.text(),add_janela.input_corCabelo.text(),add_janela.input_comprCabelo.text(),add_janela.input_tipoCabelo.text(),add_janela.input_idade.text(),add_janela.input_corRoupa.text(),
+                   add_janela.input_oculos.text(),add_janela.input_corPele.text(),add_janela.input_corSapato.text()]
+            self.func.acrescenta_dados(per)
+            self.func.novo_personagem(str(add_janela.input_nome.text()), per)
+            QMessageBox.information(self, "Inserido", "Personagem Inserido com Sucesso", QMessageBox.Ok, QMessageBox.Ok)
+            self.update_combo()
 
 
 class JanelaNovo(QDialog):
     def __init__(self):
         super(JanelaNovo,self).__init__()
         self.resize(550, 200)
-        self.setWindowTitle("Configurations")
+        self.setWindowTitle("Adicionar Personagem")
         self.setMinimumWidth(350)
         self.setWindowIcon(QIcon("../Icons/config.png"))
-        self.center()
 
         title_font = QFont("Times", 20, QFont.Bold)
-        lb_title = QLabel("Configurations", self)
+        lb_title = QLabel("Adicionar Personagem", self)
         lb_title.setFont(title_font)
         lb_title.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         lb_title.setAlignment(Qt.AlignCenter)
@@ -141,42 +177,31 @@ class JanelaNovo(QDialog):
         self.button_box.accepted.connect(self.accept)
         self.button_box.rejected.connect(self.reject)
 
-        self.ply = QLineEdit()
-        self.ply.setText(ply_default)
-        self.output = QLineEdit()
-        self.output.setText(output_default)
-        self.image = QLineEdit()
-        self.image.setText(image_dir_default)
-        self.texture = QLineEdit()
-        self.texture.setText(texture_file)
-        self.ply_button = QPushButton("Browse", self)
-        self.ply_button.clicked.connect(self.browse_ply)
-        self.obj_button = QPushButton("Browse", self)
-        self.obj_button.clicked.connect(self.browse_obj)
-        self.image_button = QPushButton("Browse", self)
-        self.image_button.clicked.connect(self.browse_image_dir)
-        self.texture_button = QPushButton("Browse", self)
-        self.texture_button.clicked.connect(self.browse_texture_file)
+        self.input_nome = QLineEdit()
+        self.input_sexo = QLineEdit()
+        self.input_corCabelo = QLineEdit()
+        self.input_comprCabelo = QLineEdit()
+        self.input_tipoCabelo = QLineEdit()
+        self.input_idade = QLineEdit()
+        self.input_corRoupa = QLineEdit()
+        self.input_oculos = QLineEdit()
+        self.input_corPele = QLineEdit()
+        self.input_corSapato = QLineEdit()
 
-        hbox1 = QHBoxLayout()
-        hbox2 = QHBoxLayout()
-        hbox3 = QHBoxLayout()
-        hbox4 = QHBoxLayout()
-        hbox1.addWidget(self.ply)
-        hbox1.addWidget(self.ply_button)
-        hbox2.addWidget(self.output)
-        hbox2.addWidget(self.obj_button)
-        hbox3.addWidget(self.image)
-        hbox3.addWidget(self.image_button)
-        hbox4.addWidget(self.texture)
-        hbox4.addWidget(self.texture_button)
         layout = QFormLayout()
         layout.setFieldGrowthPolicy(QFormLayout.AllNonFixedFieldsGrow)
         layout.addRow(lb_title)
-        layout.addRow("<b>Path to save Ply File</b>", hbox1)
-        layout.addRow("<b>Path to save OBJ file</b>", hbox2)
-        layout.addRow("<b>Directory to save layer Images</b>", hbox3)
-        layout.addRow("<b>Path to save OBJ file with texture</b>", hbox4)
+        layout.addRow("<b>Nome: </b>", self.input_nome)
+        layout.addRow("<b>Sexo: </b>", self.input_sexo)
+        layout.addRow("<b>Cor do Cabelo: </b>", self.input_corCabelo)
+        layout.addRow("<b>Comprimento do Cabelo: </b>", self.input_comprCabelo)
+        layout.addRow("<b>Tipo de Cabelo: </b>", self.input_tipoCabelo)
+        layout.addRow("<b>Idade: </b>", self.input_idade)
+        layout.addRow("<b>Cor da Roupa: </b>", self.input_corRoupa)
+        layout.addRow("<b>Usa Oculos? </b>", self.input_oculos)
+        layout.addRow("<b>Cor da Pele</b>", self.input_corPele)
+        layout.addRow("<b>Cor do Sapato</b>", self.input_corSapato)
+
         layout.addWidget(self.button_box)
         layout.setSpacing(20)
 

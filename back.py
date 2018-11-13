@@ -40,6 +40,7 @@ class Funcoes:
             if i == 0:
                 if not any(advinha[i] in s for s in self.sexos):
                     self.sexos.append(advinha[i])
+                    print("oi")
             if i == 1:
                 if not any(advinha[i] in s for s in self.cores_cabelos):
                     self.cores_cabelos.append(advinha[i])
