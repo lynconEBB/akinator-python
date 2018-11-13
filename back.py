@@ -94,7 +94,7 @@ class Funcoes:
         return achou
 
     def gerar_predict(self,chute):
-        self.arvore = DecisionTreeClassifier(criterion="gini")
+        self.arvore = DecisionTreeClassifier(criterion="entropy")
         self.arvore.fit(self.data_set_num[["cor","corCabelo","humano","lane","lugarOrigem","arma"]], self.data_set_num["campeao"])
 
         previsao = self.arvore.predict([chute])
