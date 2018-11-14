@@ -49,8 +49,6 @@ class JanelaPrincipal(QWidget):
 
         self.setLayout(self.main_layout)
 
-
-
     def advinhar(self):
         chute = [self.input_cor.text(),self.input_corCabelo.text(),self.input_humano.text(),self.input_lane.text(),self.input_lugarOrigem.text(),self.input_arma.text()]
         if (self.func.valida_personagem(chute)):
@@ -61,7 +59,9 @@ class JanelaPrincipal(QWidget):
             print(personagem)
 
             msg = QMessageBox()
-            msg.setIconPixmap(QPixmap("Imagens/"+personagem+".png"))
+            pixmap = QPixmap("Imagens/"+personagem+".jpg")
+            pixmap.scaled(64,64,Qt.KeepAspectRatio)
+            msg.setIconPixmap(pixmap)
 
             msg.setText("Seu Personagem é: "+personagem)
             msg.setWindowTitle("Personagem Encontrado")
