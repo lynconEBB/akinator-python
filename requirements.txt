@@ -9,7 +9,7 @@ configobj==5.0.6
 cupshelpers==1.0
 cycler==0.10.0
 defer==1.0.6
-httplib2==0.9.2
+httplib2==0.18.0
 idna==2.6
 joblib==0.16.0
 kiwisolver==1.2.0
