@@ -1,8 +1,11 @@
+import os
+
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import sys
-from back import *
+import pathlib
+from src.back import *
 import pydot
 import subprocess
 
@@ -116,7 +119,6 @@ class JanelaPrincipal(QMainWindow):
             personagem = self.func.gerar_predict(chute_codificado)
 
             personagem =''.join(map(str, personagem))
-            print(personagem)
 
             msg = QMessageBox()
             msg.setIconPixmap(QPixmap("Imagens/"+personagem+".png"))
@@ -142,11 +144,12 @@ class JanelaPrincipal(QMainWindow):
                         filled=True)
 
         (graph,) = pydot.graph_from_dot_file('tree.dot')
-        graph.write_png('tree2.png')
+        os.remove('tree.dot')
+        graph.write_png(str(pathlib.Path(__file__).parent.absolute()) + '/../Imagens/tree.png')
         imageViewerFromCommandLine = {'linux': 'eog',
                                       'win32': 'explorer',
                                       'darwin': 'open'}[sys.platform]
-        subprocess.run([imageViewerFromCommandLine, '/home/lyncon/AkinatorPython/tree2.png'])
+        subprocess.run([imageViewerFromCommandLine, str(pathlib.Path(__file__).parent.absolute()) + '/../Imagens/tree.png'])
 
     def inserir_pers(self):
         add_janela = JanelaNovo()
@@ -211,3 +214,4 @@ App = QApplication(sys.argv)
 window = JanelaPrincipal()
 window.show()
 sys.exit(App.exec())
+

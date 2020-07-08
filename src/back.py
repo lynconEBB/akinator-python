@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
+import pathlib
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.tree import export_graphviz
@@ -7,7 +8,9 @@ from shutil import copyfile
 
 class Funcoes:
     def __init__(self):
-        copyfile("simp.csv", "simpCopia.csv")
+        self.caminho =  str(pathlib.Path(__file__).parent.absolute())
+
+        copyfile(self.caminho +"/../CSV/dados.csv", self.caminho+ "/../CSV/dadosCopia.csv")
 
         #-------------------------Criando Caracteristicas----------------------------
         self.sexos = ["Masculino","Feminino"]
@@ -68,15 +71,15 @@ class Funcoes:
 
 
     def novo_personagem(self,nome,advinha):         # Funcao para Escrever novo personagem no Arquivo CSV
-        with open("simpCopia.csv","a") as arquivo:
+        with open(self.caminho + "/../CSV/dadosCopia.csv", "a") as arquivo:
             linha = ",".join(advinha)
             linha = "\n"+nome+","+linha
             arquivo.write(linha)
         self.encode_dados()
 
     def encode_dados(self):                         # Funcao para preencher DataFrame com Dados Numericos e Dados Categoricos
-        self.data_set_categorica = pd.read_csv('simpCopia.csv', sep=',', header=0)
-        self.data_set_num = pd.read_csv('simpCopia.csv', sep=',', header=0)
+        self.data_set_categorica = pd.read_csv(self.caminho+'/../CSV/dadosCopia.csv', sep=',', header=0)
+        self.data_set_num = pd.read_csv(self.caminho+'/../CSV/dadosCopia.csv', sep=',', header=0)
         self.encoder_sexo.fit(self.sexos)
         self.data_set_num["Sexo"] = self.encoder_sexo.fit_transform(self.data_set_num["Sexo"])
         self.encoder_corCabelo.fit(self.cores_cabelos)
@@ -157,18 +160,3 @@ class Funcoes:
         chute[8]=''.join(map(str, chute[8]))
 
         return chute
-
-
-if "__main__" == __name__:
-    trat = Funcoes()
-    chute = ["Masculino","Cinza","Gigante","Crespo","Velho","Azul","Nao","Amarelo","Preto"]
-    for i in range(2):
-        if(trat.valida_personagem(chute)):
-            chute_codificado = trat.codificar_resposta(chute)
-            prs=trat.gerar_predict(chute_codificado)
-            print(prs)
-        else:
-            trat.acrescenta_dados(chute)
-            trat.novo_personagem("Caralho",chute)
-            print(trat.data_set_num)
-            print("inserido")
