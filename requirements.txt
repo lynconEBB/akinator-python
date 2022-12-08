@@ -2,7 +2,7 @@ apt-clone==0.2.1
 apturl==0.5.2
 beautifulsoup4==4.6.0
 Brlapi==0.6.6
-certifi==2018.1.18
+certifi==2022.12.7
 chardet==3.0.4
 command-not-found==0.3
 configobj==5.0.6
